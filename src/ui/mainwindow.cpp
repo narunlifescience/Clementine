@@ -2471,7 +2471,7 @@ SettingsDialog* MainWindow::CreateSettingsDialog() {
 #endif
 
   // Handle suspend status
-  connect(settings_dialog_.get(),
+  connect(settings_dialog,
         SIGNAL(InhibitSuspendWhilePlaying(bool)),
         SLOT(InhibitSuspendWhilePlaying(bool)));
 
@@ -2843,7 +2843,7 @@ void MainWindow::InhibitSuspendWhilePlaying(bool status) {
 
 void MainWindow::HandleInhibitSuspendWhilePlaying(bool status) {
   if (idlehandler_) {
-    if (inhibit_suspend_while_playing_status_ && 
+    if (inhibit_suspend_while_playing_status_ &&
         !is_suspend_inhibited_ && status) {
       idlehandler_->Inhibit("Clementine is playing");
       is_suspend_inhibited_ = idlehandler_->Isinhibited();
@@ -2851,5 +2851,5 @@ void MainWindow::HandleInhibitSuspendWhilePlaying(bool status) {
       idlehandler_->Uninhibit();
       is_suspend_inhibited_ = idlehandler_->Isinhibited();
     }
-  } 
+  }
 }
